@@ -143,4 +143,4 @@ S001,Ali Hassan,20,Computer Science,85.0,A
 ---
 
 ## GitHub
-See github_link.txt
+https://github.com/mahamhumayunn/student-management-portal
