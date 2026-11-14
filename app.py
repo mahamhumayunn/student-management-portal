@@ -51,7 +51,7 @@ def save_data(students):
             for student in students:
                 writer.writerow(student)
     except PermissionError:
-        pass
+        print(f"Warning: could not write to '{RECORDS_FILE}' (file may be open in another program). Changes not saved.")
 
 
 def load_users():
@@ -205,6 +205,7 @@ def update_student():
         elif action == "save":
             student_id = request.form.get("student_id", "").strip().upper()
             students   = load_data()
+            invalid    = []
             for s in students:
                 if s["student_id"] == student_id:
                     s["name"]   = request.form.get("name", s["name"]).strip()
@@ -213,18 +214,25 @@ def update_student():
                         age_val = int(request.form.get("age", s["age"]))
                         if 10 <= age_val <= 80:
                             s["age"] = str(age_val)
+                        else:
+                            invalid.append("age must be between 10 and 80")
                     except ValueError:
-                        pass
+                        invalid.append("age must be a whole number")
                     try:
                         marks_val = float(request.form.get("marks", s["marks"]))
                         if 0 <= marks_val <= 100:
                             s["marks"] = str(marks_val)
                             s["grade"] = calculate_grade(marks_val)
+                        else:
+                            invalid.append("marks must be between 0 and 100")
                     except ValueError:
-                        pass
+                        invalid.append("marks must be a number")
                     found   = s
-                    success = True
-                    message = "Record updated successfully."
+                    success = not invalid
+                    if invalid:
+                        message = "Not updated: " + "; ".join(invalid) + " - previous value kept."
+                    else:
+                        message = "Record updated successfully."
                     break
             save_data(students)
 
@@ -239,6 +247,7 @@ def delete_student():
 
     found   = None
     message = ""
+    success = False
 
     if request.method == "POST":
         action = request.form.get("action")
@@ -258,8 +267,9 @@ def delete_student():
             students   = [s for s in students if s["student_id"] != student_id]
             save_data(students)
             message = "Record deleted."
+            success = True
 
-    return render_template("delete.html", found=found, message=message)
+    return render_template("delete.html", found=found, message=message, success=success)
 
 
 @app.route("/report")
