@@ -1,0 +1,24 @@
+=============================================
+      STUDENT MANAGEMENT PORTAL REPORT
+=============================================
+  Total Students  : 8
+  Average Marks   : 63.50
+  Highest Marks   : 91.00
+  Lowest Marks    : 29.00
+
+  Grade Distribution:
+    Grade A: 2 student(s)
+    Grade B: 2 student(s)
+    Grade C: 1 student(s)
+    Grade D: 1 student(s)
+    Grade F: 2 student(s)
+
+  Students Per Course:
+    Computer Science: 2 student(s)
+    Business Admin: 1 student(s)
+    Electrical Eng: 1 student(s)
+    Mathematics: 1 student(s)
+    computer: 1 student(s)
+    coding: 1 student(s)
+    Software Eng: 1 student(s)
+=============================================
