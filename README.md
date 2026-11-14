@@ -1,5 +1,5 @@
-# Student Management Portal
-Assignment 3 — End-to-End Portal Design
+﻿# Student Management Portal
+Assignment 3 - End-to-End Portal Design
 
 A console-based Student Management Portal written in Python 3, with an optional web interface built using Flask.
 
@@ -8,13 +8,13 @@ A console-based Student Management Portal written in Python 3, with an optional 
 ## Team Members
 | Member | Roll Number |
 |--------|-------------|
-| Maham Humayun Sawhney | 25L-5068 |
-| Syeda Batool Fatima Rizvi | 25L-5189 |
+| Member 1 | 25L-XXXX |
+| Member 2 | 25L-YYYY |
 
 ---
 
 ## Portal Type
-Student Management Portal — manages student records including ID, name, age, course, marks, and grade.
+Student Management Portal - manages student records including ID, name, age, course, marks, and grade.
 
 ---
 
@@ -34,7 +34,7 @@ Student Management Portal — manages student records including ID, name, age, c
 
 | File | Description |
 |------|-------------|
-| `portal.py` | Console version — all required assignment functions |
+| `portal.py` | Console version - all required assignment functions |
 | `app.py` | Web version using Flask |
 | `data/users.json` | Stores login credentials |
 | `data/students.csv` | Stores student records |
@@ -127,20 +127,20 @@ S001,Ali Hassan,20,Computer Science,85.0,A
 
 ## Work Division
 
-| Task | Maham Humayun | Syeda Batool |
-|------|---------------|--------------|
-| user_login() | Yes | |
-| add_record() | | Yes |
-| search_record() | Yes | |
-| generate_report() | Yes | |
-| File handling | | Yes |
-| Exception handling | Yes | |
-| Main menu loop | Yes | |
-| Web frontend (app.py) | | Yes |
-| Notebook | Yes | |
-| Report and README | | Yes |
+| Task | Member 1 | Member 2 |
+|------|----------|----------|
+| user_login() | | |
+| add_record() | | |
+| search_record() | | |
+| generate_report() | | |
+| File handling | | |
+| Exception handling | | |
+| Main menu loop | | |
+| Web frontend (app.py) | | |
+| Notebook | | |
+| Report and README | | |
 
 ---
 
 ## GitHub
-https://github.com/mahamhumayunn/student-management-portal
+See github_link.txt
