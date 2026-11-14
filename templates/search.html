@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+<h2>🔍 Search Student</h2>
+
+<div class="card" style="margin-bottom:25px;">
+    <form method="POST">
+        <div class="form-group">
+            <label>Search By</label>
+            <select name="search_by">
+                <option value="name">Name</option>
+                <option value="student_id">Student ID</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Enter Search Term</label>
+            <input type="text" name="keyword" placeholder="Type name or ID..." required>
+        </div>
+        <button type="submit" class="btn btn-blue">Search</button>
+    </form>
+</div>
+
+{% if searched %}
+    {% if results %}
+    <p style="margin-bottom:15px; color:#555;">Found <strong>{{ results|length }}</strong> result(s):</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Student ID</th><th>Name</th><th>Age</th><th>Course</th><th>Marks</th><th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in results %}
+            <tr>
+                <td>{{ s.student_id }}</td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.age }}</td>
+                <td>{{ s.course }}</td>
+                <td>{{ s.marks }}</td>
+                <td><span class="grade-{{ s.grade }}">{{ s.grade }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info">No matching student found.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

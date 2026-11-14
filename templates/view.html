@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+<h2>📋 All Students</h2>
+
+{% if students %}
+<p style="margin-bottom:15px; color:#555;">Total: <strong>{{ students|length }}</strong> student(s)</p>
+<table>
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Course</th>
+            <th>Marks</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for s in students %}
+        <tr>
+            <td>{{ s.student_id }}</td>
+            <td>{{ s.name }}</td>
+            <td>{{ s.age }}</td>
+            <td>{{ s.course }}</td>
+            <td>{{ s.marks }}</td>
+            <td><span class="grade-{{ s.grade }}">{{ s.grade }}</span></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">No student records found. Click "➕ Add Student" to add one.</div>
+{% endif %}
+{% endblock %}

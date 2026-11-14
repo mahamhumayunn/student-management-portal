@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block page_content %}
+<h2>🗑️ Delete Student Record</h2>
+
+{% if message %}
+<div class="alert alert-success">✅ {{ message }}</div>
+{% endif %}
+
+{% if not found %}
+<div class="card">
+    <form method="POST">
+        <input type="hidden" name="action" value="find">
+        <div class="form-group">
+            <label>Enter Student ID to Delete</label>
+            <input type="text" name="student_id" placeholder="e.g. S001" required>
+        </div>
+        <button type="submit" class="btn btn-red">Find Student</button>
+    </form>
+</div>
+
+{% else %}
+<div class="card">
+    <div class="alert alert-error" style="margin-bottom:20px;">
+        ⚠️ You are about to delete this record. This cannot be undone.
+    </div>
+    <table style="margin-bottom:20px;">
+        <tr><th>Student ID</th><td>{{ found.student_id }}</td></tr>
+        <tr><th>Name</th>      <td>{{ found.name }}</td></tr>
+        <tr><th>Age</th>       <td>{{ found.age }}</td></tr>
+        <tr><th>Course</th>    <td>{{ found.course }}</td></tr>
+        <tr><th>Marks</th>     <td>{{ found.marks }}</td></tr>
+        <tr><th>Grade</th>     <td><span class="grade-{{ found.grade }}">{{ found.grade }}</span></td></tr>
+    </table>
+    <form method="POST" style="display:inline;">
+        <input type="hidden" name="action" value="confirm_delete">
+        <input type="hidden" name="student_id" value="{{ found.student_id }}">
+        <button type="submit" class="btn btn-red">✅ Yes, Delete</button>
+    </form>
+    <a href="/delete" class="btn btn-grey" style="margin-left:10px;">❌ Cancel</a>
+</div>
+{% endif %}
+{% endblock %}

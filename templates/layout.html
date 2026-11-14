@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Navbar -->
+<div class="navbar">
+    <h1>🎓 Student Management Portal</h1>
+    <div>
+        <span class="user-info">👤 {{ session.username }} &nbsp;|&nbsp; 🔑 {{ session.role }} &nbsp;&nbsp;</span>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<!-- Sidebar + page content -->
+<div class="layout">
+    <div class="sidebar">
+        <a href="/view"   {% if request.path == '/view'   %}class="active"{% endif %}>📋 View All</a>
+        <a href="/add"    {% if request.path == '/add'    %}class="active"{% endif %}>➕ Add Student</a>
+        <a href="/search" {% if request.path == '/search' %}class="active"{% endif %}>🔍 Search</a>
+        <a href="/update" {% if request.path == '/update' %}class="active"{% endif %}>✏️ Update</a>
+        <a href="/delete" {% if request.path == '/delete' %}class="active"{% endif %}>🗑️ Delete</a>
+        <a href="/report" {% if request.path == '/report' %}class="active"{% endif %}>📊 Report</a>
+    </div>
+    <div class="content">
+        {% block page_content %}{% endblock %}
+    </div>
+</div>
+
+{% endblock %}
