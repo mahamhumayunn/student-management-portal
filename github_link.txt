@@ -1,0 +1,4 @@
+﻿GitHub Repository Link:
+https://github.com/mahamhumayunn/student-management-portal
+
+(The repository is public - the link works while logged out of GitHub.)
