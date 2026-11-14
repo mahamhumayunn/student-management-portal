@@ -1,0 +1,81 @@
+============================================================
+  HOW TO TRANSFER THIS PROJECT TO ANOTHER LAPTOP
+============================================================
+
+STEP 1 — WHAT TO COPY
+----------------------
+Copy ONLY these files and folders to the other laptop.
+Do NOT copy the "venv" folder — it is too big and won't 
+work on another machine anyway.
+
+Files and folders to copy:
+  ✅ portal.py
+  ✅ app.py
+  ✅ requirements.txt
+  ✅ run_frontend.bat
+  ✅ run_console.bat
+  ✅ README.md
+  ✅ data/              (the whole folder with users.json and students.csv)
+  ✅ templates/         (the whole folder with all .html files)
+  ✅ Portal_Notebook.ipynb
+  ✅ github_link.txt
+
+  ❌ DO NOT copy: venv/, .venv/, __pycache__/, .streamlit/
+
+The easiest way is to zip just those files and send the zip.
+
+
+STEP 2 — ON THE OTHER LAPTOP
+------------------------------
+1. Make sure Python is installed.
+   - Open Command Prompt and type:  python --version
+   - If Python is not installed, download it from: https://www.python.org/downloads/
+   - During install, tick "Add Python to PATH" ✅
+
+2. Copy the project folder anywhere (e.g. Desktop).
+
+3. Open Command Prompt (or PowerShell) inside the project folder.
+   - Hold Shift, right-click the folder → "Open PowerShell window here"
+   OR
+   - Open CMD, then type:  cd "C:\Users\YourName\Desktop\maham project"
+
+4. Create a virtual environment:
+      py -3.12 -m venv venv
+
+   If that doesn't work, try:
+      python -m venv venv
+
+5. Install Flask:
+      venv\Scripts\pip install flask
+
+6. Run the portal:
+      venv\Scripts\python app.py
+
+7. Open your browser and go to:
+      http://localhost:5000
+
+8. Login with:
+      Username: admin
+      Password: admin123
+
+
+SHORTCUT (after venv is set up)
+---------------------------------
+Just double-click:  run_frontend.bat
+It does everything automatically.
+
+
+FOR THE CONSOLE VERSION (no browser needed)
+--------------------------------------------
+Double-click: run_console.bat
+OR type: python portal.py
+
+
+============================================================
+  SUMMARY
+============================================================
+- The "venv" folder is never transferred — it gets recreated
+  on each machine with "pip install flask"
+- The data files (users.json, students.csv) store all records
+- All the code is in portal.py (console) and app.py (web)
+============================================================

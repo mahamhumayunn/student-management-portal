@@ -1,0 +1,281 @@
+STUDENT MANAGEMENT PORTAL
+Assignment 3 - End-to-End Portal Design
+========================================
+
+
+WHAT THIS PROJECT DOES
+-----------------------
+This project is a Student Management Portal. It is a program
+that lets a user log in and then manage student records. The
+user can add students, view them, search for a specific student,
+update their details, delete them, and generate a report.
+
+There are two ways to use it:
+  - Console version: runs in the terminal window (portal.py)
+  - Web version: runs in the browser using Flask (app.py)
+
+Both versions do the same thing. The web version just has a
+proper interface with pages, buttons, and a sidebar.
+
+
+FILES AND WHAT THEY DO
+-----------------------
+
+portal.py
+  This is the main Python file for the console version.
+  It contains all the required functions for the assignment.
+  You run it with:  python portal.py
+  It shows a numbered menu and waits for input.
+
+app.py
+  This is the web version. It uses Flask, which is a Python
+  library that lets you build simple websites. Each page of
+  the website is handled by a separate function in this file.
+  You run it with:  python app.py
+  Then open the browser at:  http://localhost:5000
+
+data/users.json
+  This file stores the login credentials (username, password,
+  role). It is in JSON format, which means it uses curly braces
+  and key-value pairs, like a Python dictionary.
+  Example:
+    {"username": "admin", "password": "admin123", "role": "admin"}
+
+data/students.csv
+  This file stores all student records. CSV means each row is
+  one student and the values are separated by commas.
+  Columns: student_id, name, age, course, marks, grade
+  The program reads this file when it starts, and updates it
+  every time a record is added, changed, or deleted.
+
+reports/summary_report.txt
+  This file is created automatically when the user generates
+  a report. It contains total students, average marks, highest
+  and lowest marks, grade counts, and course counts.
+
+templates/ folder
+  This folder contains HTML files for the web version.
+  There is one HTML file per page (login, view, add, search,
+  update, delete, report). Flask uses these to display the pages.
+
+requirements.txt
+  A simple text file that lists the packages needed.
+  It only contains "flask". To install: pip install -r requirements.txt
+
+run_frontend.bat
+  A Windows batch file. Double-clicking it sets up the venv,
+  installs Flask, and starts the web portal automatically.
+
+run_console.bat
+  A Windows batch file. Double-clicking it starts portal.py.
+
+
+FUNCTIONS IN portal.py
+-----------------------
+
+calculate_grade(marks)
+  Takes a number between 0 and 100 and returns a letter grade.
+  Uses if/elif/else statements.
+  80 and above = A, 65-79 = B, 50-64 = C, 40-49 = D, below 40 = F
+
+load_data(filepath)
+  Opens the students.csv file using Python's csv module.
+  Reads each row and stores it as a dictionary.
+  Returns a list of all those dictionaries.
+  If the file does not exist, it catches FileNotFoundError and
+  creates an empty file so the program does not crash.
+
+save_data(filepath, students)
+  Takes the full list of students and writes them all back to
+  the CSV file. This overwrites the old file with the new data.
+  Called after every add, update, or delete.
+
+user_login()
+  Opens users.json and loads the credentials.
+  Asks the user for username and password.
+  Checks if they match anything in the file using a for loop.
+  Allows up to 3 attempts. Returns the username and role if
+  login succeeds, or None if it fails.
+
+add_record(students)
+  Collects details for a new student one field at a time.
+  Checks the student ID is not already in the list (no duplicates).
+  Validates age and marks using try/except to catch ValueError
+  when someone types letters instead of numbers.
+  Calls calculate_grade() to set the grade automatically.
+  Appends the new student to the list and calls save_data().
+
+search_record(students)
+  Asks whether to search by ID or by name.
+  Goes through every student in the list using a for loop.
+  For ID: exact match only.
+  For name: partial match (typing "ali" will find "Ali Hassan").
+  Prints the matching records or says "not found".
+
+generate_report(students)
+  Loops through all students to collect marks, grades, courses.
+  Calculates total, average, highest, and lowest marks.
+  Counts how many students are in each grade and each course.
+  Prints the report to the screen.
+  Saves the report to reports/summary_report.txt.
+  Uses finally to always print "Report generation complete"
+  even if something goes wrong with saving the file.
+
+update_record(students)
+  Asks for a student ID, finds that student in the list.
+  Shows current values and lets the user type new ones.
+  If the user presses Enter without typing anything, the
+  old value is kept. Validates age and marks with try/except.
+  If marks change, the grade is recalculated automatically.
+  Saves the updated list to file.
+
+delete_record(students)
+  Asks for a student ID, finds that student.
+  Shows the student details and asks for confirmation.
+  If the user types "yes", removes the student from the list.
+  Saves the updated list to file.
+
+view_all_records(students)
+  Simply loops through all students with a for loop and prints
+  them in a table using string formatting.
+
+display_menu()
+  Prints the numbered menu options (1 to 7) on screen.
+
+main()
+  The entry point of the program. Called when the script runs.
+  First calls user_login(). If login fails, the program exits.
+  Then loads the student data from file.
+  Runs a while True loop that keeps showing the menu until
+  the user picks option 7 (Exit). The break statement ends it.
+  Each menu option calls the matching function.
+
+
+HOW ERROR HANDLING WORKS
+-------------------------
+
+The project handles four kinds of errors:
+
+1. FileNotFoundError
+   Where: load_data() and user_login()
+   Happens when: students.csv or users.json does not exist yet.
+   What happens: the program creates an empty file and carries on.
+
+2. PermissionError
+   Where: save_data() and generate_report()
+   Happens when: the program cannot write to a file (e.g. it is
+   open in another program or the folder is read-only).
+   What happens: an error message is shown, the program does not crash.
+
+3. ValueError
+   Where: add_record() and update_record()
+   Happens when: the user types something like "twenty" in the
+   age or marks field. Python's int() or float() cannot convert
+   that and raises ValueError.
+   What happens: caught by except ValueError, shows a message,
+   the record is not saved.
+
+4. json.JSONDecodeError
+   Where: user_login() and load_users()
+   Happens when: users.json is empty or has broken formatting.
+   What happens: shows "file is corrupted" message.
+
+The finally keyword is used in generate_report(). The finally
+block runs no matter what — even if an exception happened before
+it. We use it to always confirm that the report step finished.
+
+
+WHY THESE CHOICES WERE MADE
+-----------------------------
+
+Why while True for the menu?
+  Because we want the menu to keep appearing until the user
+  decides to exit. The break in option 7 stops the loop.
+  Invalid choices just print an error and show the menu again.
+
+Why CSV for student records?
+  CSV is a simple text file where each row is one student.
+  Python has a built-in csv module so no extra install needed.
+  It can also be opened in Excel to check the data.
+
+Why JSON for user credentials?
+  JSON naturally stores key-value pairs like username and password.
+  Python has a built-in json module. Easy to read and edit.
+
+Why separate functions for each feature?
+  Each function does one job. This makes the code easier to read,
+  easier to test, and easier to explain. If one function has a
+  bug it does not break the rest.
+
+Why Flask for the web version?
+  Flask is a lightweight Python web framework. Each URL path
+  maps to one Python function. The logic stays the same as
+  portal.py — only the input/output method changes.
+
+
+HOW THE WEB VERSION WORKS (app.py)
+------------------------------------
+Flask maps URLs to Python functions using @app.route().
+When the user opens a URL in the browser, Flask calls the
+matching function, which does the logic and returns an HTML page.
+
+Example:
+  @app.route("/add", methods=["GET", "POST"])
+  def add_student():
+      ...
+      return render_template("add.html", ...)
+
+GET means: show the form.
+POST means: the user submitted the form, process the data.
+
+Flask's session is used to remember who is logged in. When the
+user logs in, their username and role are stored in session.
+Every other page checks session to make sure the user is logged in.
+If not, it redirects them to the login page.
+
+
+LIKELY VIVA QUESTIONS
+----------------------
+
+Q: What does this portal do?
+A: It manages student records. After logging in, you can add,
+   view, search, update, and delete students, and generate a report.
+
+Q: Why did you use CSV for the student records?
+A: CSV is simple and readable. Python has a built-in csv module
+   so no extra libraries are needed. Each row is one student.
+
+Q: What happens if the data file does not exist?
+A: load_data() catches FileNotFoundError and creates an empty
+   file. The program starts with no records but does not crash.
+
+Q: Why did you use while True in the menu?
+A: It keeps the menu running until the user chooses Exit.
+   The break statement in option 7 ends the loop cleanly.
+
+Q: What happens if someone types a word in the marks field?
+A: float() raises a ValueError. We catch it with try/except
+   and show an error message. The record is not saved.
+
+Q: What does the finally block do?
+A: The finally block always runs, even if an exception occurred.
+   We use it in generate_report() to always confirm it finished.
+
+Q: How does the login work?
+A: It opens users.json and loops through each user. If the
+   username and password both match, login succeeds.
+   After 3 wrong attempts, access is denied.
+
+Q: How did you stop duplicate student IDs?
+A: In add_record(), before saving we loop through all existing
+   students. If the ID already exists we show an error and return
+   without adding.
+
+Q: What is Flask?
+A: Flask is a Python library for building web applications.
+   Each page is a Python function with a URL attached to it.
+
+Q: What is a virtual environment?
+A: A venv is a separate Python setup just for this project.
+   Flask is installed inside it. This prevents conflicts with
+   other Python projects on the same computer.
