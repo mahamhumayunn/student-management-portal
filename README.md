@@ -8,8 +8,8 @@ A console-based Student Management Portal written in Python 3, with an optional 
 ## Team Members
 | Member | Roll Number |
 |--------|-------------|
-| Member 1 | 25L-XXXX |
-| Member 2 | 25L-YYYY |
+| Maham Humayun Sawhney | 25L-5068 |
+| Syeda Batool Fatima Rizvi | 25L-5189 |
 
 ---
 
@@ -127,18 +127,18 @@ S001,Ali Hassan,20,Computer Science,85.0,A
 
 ## Work Division
 
-| Task | Member 1 | Member 2 |
-|------|----------|----------|
-| user_login() | | |
-| add_record() | | |
-| search_record() | | |
-| generate_report() | | |
-| File handling | | |
-| Exception handling | | |
-| Main menu loop | | |
-| Web frontend (app.py) | | |
-| Notebook | | |
-| Report and README | | |
+| Task | Maham Humayun | Syeda Batool |
+|------|---------------|--------------|
+| user_login() | Yes | |
+| add_record() | | Yes |
+| search_record() | Yes | |
+| generate_report() | Yes | |
+| File handling | | Yes |
+| Exception handling | Yes | |
+| Main menu loop | Yes | |
+| Web frontend (app.py) | | Yes |
+| Notebook | Yes | |
+| Report and README | | Yes |
 
 ---
 
