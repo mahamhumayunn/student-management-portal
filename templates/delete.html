@@ -4,7 +4,7 @@
 <h2>🗑️ Delete Student Record</h2>
 
 {% if message %}
-<div class="alert alert-success">✅ {{ message }}</div>
+<div class="alert alert-{{ 'success' if success else 'error' }}">{{ message }}</div>
 {% endif %}
 
 {% if not found %}
