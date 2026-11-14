@@ -5,3 +5,5 @@ __pycache__/
 .streamlit/
 *.zip
 ~$*
+HOW_TO_TRANSFER.txt
+PROJECT_EXPLANATION.txt
