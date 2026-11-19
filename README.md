@@ -6,10 +6,10 @@ A console-based Student Management Portal written in Python 3, with an optional 
 ---
 
 ## Team Members
-| Member | Roll Number |
-|--------|-------------|
-| Member 1 | 25L-XXXX |
-| Member 2 | 25L-YYYY |
+| Member | Roll Number | Name |
+|--------|-------------|------|
+| Member 1 | 25L-5068 | Maham Humayun Sawhney |
+| Member 2 | 25L-5189 | Syeda Batool Fatima Rizvi |
 
 ---
 
@@ -35,6 +35,7 @@ Student Management Portal - manages student records including ID, name, age, cou
 | File | Description |
 |------|-------------|
 | `portal.py` | Console version - all required assignment functions |
+| `Portal_Notebook.ipynb` | Executed notebook version of `portal.py` (markdown notes + sample runs) |
 | `app.py` | Web version using Flask |
 | `data/users.json` | Stores login credentials |
 | `data/students.csv` | Stores student records |
@@ -127,18 +128,21 @@ S001,Ali Hassan,20,Computer Science,85.0,A
 
 ## Work Division
 
-| Task | Member 1 | Member 2 |
-|------|----------|----------|
-| user_login() | | |
-| add_record() | | |
-| search_record() | | |
-| generate_report() | | |
-| File handling | | |
-| Exception handling | | |
-| Main menu loop | | |
-| Web frontend (app.py) | | |
-| Notebook | | |
-| Report and README | | |
+| Task | Maham | Batool |
+|------|-------|--------|
+| Login system (`user_login` / `load_users`) | Yes | |
+| Add record + input validation (`add_record`) | | Yes |
+| Search by ID or name (`search_record`) | Yes | |
+| Update / delete records | | Yes |
+| Report generation (`generate_report`) | Yes | |
+| File handling - CSV and JSON read/write | | Yes |
+| Exception handling (all try/except blocks) | Yes | |
+| Main menu loop - console version | Yes | |
+| Web backend - `app.py` routes and session logic | | Yes |
+| Web frontend - `templates/` HTML pages | | Yes |
+| Notebook (`Portal_Notebook.ipynb`) | Yes | |
+| Documentation (`README.md`, report) | | Yes |
+| Testing both versions and final review | Yes | Yes |
 
 ---
 
